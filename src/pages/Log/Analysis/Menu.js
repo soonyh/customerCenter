@@ -1,17 +1,9 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Card, DatePicker, Row, Col, Form, Select, Button, Icon, Divider } from 'antd';
-import {
-  ChartCard,
-  MiniArea,
-  MiniBar,
-  MiniProgress,
-  Field,
-  Bar,
-  Pie,
-  TimelineChart,
-} from '@/components/Charts';
+import { TimelineChart } from '@/components/Charts';
 import classNames from 'classnames';
+import {FixInputPlaceholderForIE} from '../../../utils/utils';
 import iconToday from './img/icon_today.png';
 import styles from './BaseView.less';
 
@@ -20,14 +12,14 @@ const { RangePicker } = DatePicker;
 
 const namespace = 'log';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const chartData = state[namespace].list;
   return {
     chartData,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     onDidMount: () => {
       dispatch({
@@ -37,11 +29,14 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-@connect(mapStateToProps, mapDispatchToProps)
+// @connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )
 class MenuPage extends React.Component {
   state = {
     sort: 'desc',
-    chartData:[
+    chartData: [
       {
         x: new Date().getTime() + 1000 * 60 * 30,
         y1: 12,
@@ -49,12 +44,12 @@ class MenuPage extends React.Component {
       {
         x: new Date().getTime() + 1000 * 60 * 30,
         y1: 18,
-      }
-    ]
+      },
+    ],
   };
   componentDidMount() {
-    this.props.onDidMount()
-   }
+    this.props.onDidMount();
+  }
   static getDerivedStateFromProps(props, state) {
     const { chartData } = props;
     if (chartData.length > 0) {
@@ -68,18 +63,7 @@ class MenuPage extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    console.log(this.props)
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 8 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
-      },
-    };
-
+    
     return (
       <div>
         <Form className="bss-form-inline">
@@ -149,7 +133,7 @@ class MenuPage extends React.Component {
           </div>
           <div className="panel-body">
             <Row gutter={16} style={{ padding: '10px 0' }}>
-              <Col span={3}  align="center">
+              <Col span={3} align="center">
                 <div
                   className={classNames(
                     styles.font30,
@@ -158,20 +142,28 @@ class MenuPage extends React.Component {
                     styles.sort,
                     this.state.sort
                   )}
-                  style={{ position: 'relative', display:"inline-block", textAlign: 'center',cursor:"pointer",paddingTop:"5px",width:"100px",height:"52px" }}
+                  style={{
+                    position: 'relative',
+                    display: 'inline-block',
+                    textAlign: 'center',
+                    cursor: 'pointer',
+                    paddingTop: '5px',
+                    width: '100px',
+                    height: '52px',
+                  }}
                   onClick={() => this.sort()}
                 >
                   Top
                   <Icon
                     type="caret-up"
-                    style={{ position: 'absolute', top: '15px', right: "5px", fontSize: '18px' }}
+                    style={{ position: 'absolute', top: '15px', right: '5px', fontSize: '18px' }}
                   />
                   <Icon
                     type="caret-down"
-                    style={{ position: 'absolute', top: '27px', right: "5px", fontSize: '18px' }}
+                    style={{ position: 'absolute', top: '27px', right: '5px', fontSize: '18px' }}
                   />
                 </div>
-                <em className={styles.em} style={{right:0,left:'auto'}}/>
+                <em className={styles.em} style={{ right: 0, left: 'auto' }} />
               </Col>
               <Col span={3} align="center">
                 <div className={classNames(styles.number, styles.orange)}>100</div>
@@ -205,16 +197,16 @@ class MenuPage extends React.Component {
               </Col>
             </Row>
             <Divider style={{ margin: '22px 0 32px' }} />
-            <TimelineChart
-              height={295}
-              data={this.state.chartData}
-              titleMap={{ y1: '点击量' }}
-            />
+            <TimelineChart height={295} data={this.state.chartData} padding={[50,50,50,50]} titleMap={{ y1: '点击量' }} />
           </div>
         </div>
       </div>
     );
   }
 }
+// export default Form.create()(MenuPage);
 
-export default Form.create()(MenuPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Form.create()(MenuPage));

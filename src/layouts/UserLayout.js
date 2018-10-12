@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Link from "umi/link";
 import { Icon } from "antd";
-import globalConfig from "../../config/global.config";
+import defaultSettings from '@/defaultSettings';
 import styles from "./UserLayout.less";
 import logo from "./img/logo.png";
 import zhengQi from "./img/pic_zhengqi.png";
@@ -45,7 +45,7 @@ class UserLayout extends React.PureComponent {
                     </div>
                 </div>
                 <div className="login-footer">
-                    {globalConfig.footer}
+                    {defaultSettings.footer}
                 </div>
             </div>
         );

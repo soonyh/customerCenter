@@ -6,7 +6,7 @@ import Link from 'umi/link';
 import styles from './index.less';
 import BaseMenu, { getMenuMatches } from './BaseMenu';
 import { urlToList } from '../_utils/pathTools';
-import globalConfig from '../../../config/global.config';
+import defaultSettings from '@/defaultSettings';
 
 const { Sider } = Layout;
 
@@ -104,7 +104,7 @@ export default class SiderMenu extends PureComponent {
         collapsed={collapsed}
         breakpoint="lg"
         onCollapse={onCollapse}
-        width={globalConfig.siderWidth}
+        width={defaultSettings.siderWidth}
         theme={theme}
         className={siderClassName}
       >

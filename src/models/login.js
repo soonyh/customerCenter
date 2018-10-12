@@ -38,7 +38,7 @@ export default {
             return;
           }
         }
-        yield put(routerRedux.replace(redirect || '/dashboard'));
+        yield put(routerRedux.replace(redirect || '/log/analysis'));
       }else if(response.status == 'error'){
         Message.error('账户或密码错误（admin/123456）')
       }

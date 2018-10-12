@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import router from 'umi/router';
 import { FormattedMessage } from 'umi/locale';
-import { Menu,Icon } from 'antd';
+import { Menu, Icon } from 'antd';
 import GridContent from '@/components/PageHeaderWrapper/GridContent';
 import styles from './BaseView.less';
-import MenuPage from './Menu';
-import Business from './Business';
+import Function from './Function';
+import Exception from './Exception';
+import Click from './Click';
 import Login from './Login';
 
 const { Item } = Menu;
@@ -20,15 +21,16 @@ class BaseView extends Component {
     super(props);
     const { match, location } = props;
     const menuMap = {
-      menu: 'menu',
-      business: 'business',
-      login: 'login'
+      menu: 'click',
+      business: 'function',
+      business: 'exception',
+      login: 'login',
     };
     const key = location.pathname.replace(`${match.path}/`, '');
     this.state = {
       mode: 'inline',
       menuMap,
-      selectKey: menuMap[key] ? key : 'menu',
+      selectKey: menuMap[key] ? key : 'login',
     };
   }
 
@@ -66,16 +68,18 @@ class BaseView extends Component {
     this.setState({
       selectKey: key,
     });
-  };  
+  };
 
-  getChildren = (key) => {
-    if(key == 'menu'){
-      return <MenuPage/>
-    }else if(key == 'business'){
-      return <Business/>
-    }else if(key == 'login'){
-      return <Login/>
-    }    
+  getChildren = key => {
+    if (key == 'click') {
+      return <Click />;
+    } else if (key == 'exception') {
+      return <Exception />;
+    } else if (key == 'login') {
+      return <Login />;
+    } else if (key == 'function') {
+      return <Function />;
+    }
   };
 
   resize = () => {
@@ -105,28 +109,22 @@ class BaseView extends Component {
     const { mode, selectKey } = this.state;
     return (
       // <GridContent>
-        <div
-          className={`${styles.main} clearfix`}
-          ref={ref => {
-            this.main = ref;
-          }}
-        >
-          <div className={styles.leftmenu}>
-            <Menu mode={mode} selectedKeys={[selectKey]} onClick={this.selectKey} defaultOpenKeys={['sub1','sub2']}>
-              <SubMenu key="sub1" title={<span><span>行为分析</span></span>}>
-                  <Menu.Item key="menu">菜单点击分析</Menu.Item>
-                  <Menu.Item key="business">业务功能点击分析</Menu.Item>
-                  <Menu.Item key="login">登录分析</Menu.Item>
-              </SubMenu>
-              <SubMenu key="sub2" title={<span><span>页面加载时间分析</span></span>}>
-                  <Menu.Item key="timer">耗时统计日志分析</Menu.Item>
-              </SubMenu>
-            </Menu>
-          </div>
-          <div className={styles.right}>
-            {this.getChildren(selectKey)}
-          </div>
+      <div
+        className={`${styles.main} clearfix`}
+        ref={ref => {
+          this.main = ref;
+        }}
+      >
+        <div className={styles.leftmenu}>
+          <Menu mode={mode} selectedKeys={[selectKey]} onClick={this.selectKey}>
+            <Menu.Item key="login">登录日志</Menu.Item>
+            <Menu.Item key="click">点击日志</Menu.Item>
+            <Menu.Item key="function">功能操作日志</Menu.Item>
+            <Menu.Item key="exception">异常日志</Menu.Item>
+          </Menu>
         </div>
+        <div className={styles.right}>{this.getChildren(selectKey)}</div>
+      </div>
       // </GridContent >
     );
   }

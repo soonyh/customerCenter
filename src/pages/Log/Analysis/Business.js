@@ -62,7 +62,7 @@ class Basic extends React.Component {
         </div>
         <div className="panel-body">
           <Row gutter={32} style={{padding:"20px"}}>
-            <Col span={20}>
+            <Col span={18}>
               <Chart height={400} data={dv} forceFit>
                 <Coord transpose />
                 <Axis
@@ -76,7 +76,7 @@ class Basic extends React.Component {
                 <Geom type="interval" position="country*population" />
               </Chart>
             </Col>
-            <Col span={4}>
+            <Col span={6}>
               <div className={styles.ptContainer}>
                 <div className={styles.title}>最受欢迎的</div>
                 <div className={styles.base}>

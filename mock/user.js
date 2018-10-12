@@ -6,7 +6,7 @@ const proxy =  {
   'GET /api/currentUser': (req, res) => {
     res.status(200).send({
       status:'error',
-      name: 'Serati Ma',
+      name: 'soon',
       avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
       userid: '00000001',
       email: 'antdesign@alipay.com',
@@ -91,6 +91,14 @@ const proxy =  {
         status: 'ok',
         type,
         currentAuthority: 'guest',
+      });
+      return;
+    }
+    if (password === '123456' && jobNumber === 'test') {
+      res.send({
+        status: 'ok',
+        type,
+        currentAuthority: 'test',
       });
       return;
     }

@@ -1,13 +1,15 @@
-import { Component } from "react";
-import { Layout, Menu, Dropdown, Icon, Badge, Row, Col } from "antd";
-import classNames from "classnames";
-import Link from "umi/link";
-import Trigger from "rc-trigger";
-import Debounce from "lodash-decorators/debounce";
-import styles from "./header.less";
-import logo from "../assets/portal-logo.png";
-import title from "../assets/pic_001.png";
-import avatar from "../assets/user-head.png";
+import { Component } from 'react';
+import { Layout, Menu, Dropdown, Icon, Badge, Row, Col, Modal, Button } from 'antd';
+import { formatMessage, setLocale, getLocale, FormattedMessage } from 'umi/locale';
+import classNames from 'classnames';
+import { connect } from 'dva';
+import Link from 'umi/link';
+import Trigger from 'rc-trigger';
+import Debounce from 'lodash-decorators/debounce';
+import styles from './header.less';
+import logo from '../assets/portal-logo.png';
+import title from '../assets/pic_001.png';
+import avatar from '../assets/user-head.png';
 
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -57,14 +59,28 @@ const menu = (
   </Menu>
 );
 
-export default class HeaderView extends Component {
+class HeaderView extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showWorkspace: false
+      showWorkspace: false,
+      noticeNumber: 33,
+      avatar: avatar,
     };
   }
+
+  static getDerivedStateFromProps(props, state) {
+    // if (!props.autoHideHeader && !state.visible) {
+    //   return {
+    //     visible: true,
+    //   };
+    // }
+    return {
+      ...props,
+    };
+  }
+
   @Debounce(100)
   toggleDropdownMenu(e) {
     this.state.showWorkspace
@@ -72,9 +88,19 @@ export default class HeaderView extends Component {
       : this.setState({ showWorkspace: true });
   }
 
-  handle() {
-    console.log(111111);
-  }
+  handleLogout = e => {
+    e.preventDefault();
+    const { dispatch } = this.props;
+    Modal.confirm({
+      title: formatMessage({ id: 'logoutConfirm' }),
+      onOk() {
+        dispatch({
+          type: 'login/logout',
+        });
+      },
+    });
+  };
+
   render() {
     return (
       <Header className={styles.wrapper}>
@@ -89,14 +115,14 @@ export default class HeaderView extends Component {
             <img
               src={title}
               alt="政企客户中心"
-              style={{ paddingTop: "20px", verticalAlign: "top" }}
+              style={{ paddingTop: '20px', verticalAlign: 'top' }}
             />
           </div>
 
           <div className={styles.allMenu}>
             <Dropdown overlay={menu}>
               <a className="ant-dropdown-link" href="#">
-              常用菜单 <Icon type="down" />
+                常用菜单 <Icon type="down" />
               </a>
             </Dropdown>
           </div>
@@ -115,20 +141,20 @@ export default class HeaderView extends Component {
         <div className="pull-right">
           <div className={`${styles.notice} ${styles.item}`}>
             <a href="#">
-              <Badge count={100}>
+              <Badge count={this.state.noticeNumber}>
                 <Icon type="mail" />
               </Badge>
             </a>
           </div>
 
           <div className={`${styles.avatar} ${styles.item}`}>
-            <a href="#" className="topbar-info-user-a js-info-user">
-              <img alt="" src={avatar} width="36" height="36" />
+            <a href="javascript:;" className="topbar-info-user-a js-info-user" style={{ color: '#666' }}>
+              <img alt="" src={avatar} width="36" height="36" /> {this.state.currentUser.name}
             </a>
           </div>
 
           <div className={`${styles.logout} ${styles.item}`}>
-            <a href="#">
+            <a href="#" onClick={this.handleLogout}>
               <Icon type="poweroff" />
             </a>
           </div>
@@ -136,8 +162,8 @@ export default class HeaderView extends Component {
         <div
           className="topbar-dropdown-box js-alldd-box fadeInDown animated"
           style={{
-            height: "auto",
-            display: this.state.showWorkspace ? "block" : "none"
+            height: 'auto',
+            display: this.state.showWorkspace ? 'block' : 'none',
           }}
         >
           <div className="y-row">
@@ -402,3 +428,7 @@ export default class HeaderView extends Component {
     );
   }
 }
+
+export default connect(({ user }) => ({
+  currentUser: user.currentUser,
+}))(HeaderView);

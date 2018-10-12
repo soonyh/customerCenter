@@ -18,19 +18,21 @@ export default [
         path: "/",
         component: "../layouts/BasicLayout",
         Routes: ["src/pages/Authorized"],
-        authority: ["admin", "user"],
+        authority: ["admin", "user","test"],
         routes: [
             { path: "/", redirect: "/log/analysis" },
             {
                 path: "/dashboard",
                 name: "dashboard",
                 icon: "dashboard",
+                authority: ["admin", "user"],
                 component: "/Dashboard"
             },
             {
                 path: "/form",
                 name: "form",
                 icon: "form",
+                authority: ["admin", "user"],
                 routes: [
                     {
                         path: "/form/basic-form",
@@ -54,7 +56,7 @@ export default [
                 path: "/log",
                 name: "log",
                 icon: "form",
-                authority: ["admin"],
+                authority: ["test"],
                 routes: [
                     {
                         path: "/log/analysis",
@@ -77,12 +79,24 @@ export default [
                     },
                     {
                         path: "/log/detail",
-                        component: "/Log/Detail/Time",                        
+                        component: "/Log/Detail/BaseView",                        
                         name: "detail",
                         routes: [
                             {
-                                path: "/log/detail/time",
-                                component:"/Log/Detail/Time"
+                                path: "/log/detail/click",
+                                component:"/Log/Detail/Click"
+                            },
+                            {
+                                path: "/log/detail/login",
+                                component:"/Log/Detail/login"
+                            },
+                            {
+                                path: "/log/detail/exception",
+                                component:"/Log/Detail/Exception"
+                            },
+                            {
+                                path: "/log/detail/function",
+                                component:"/Log/Detail/Function"
                             }
                         ]
                     }

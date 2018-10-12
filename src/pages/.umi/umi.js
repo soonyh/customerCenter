@@ -1,5 +1,5 @@
 import './polyfills';
-
+import '../../global.js';
 import '@tmp/initHistory';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -36,7 +36,7 @@ Promise.all(moduleBeforeRendererPromises).then(() => {
   }
 });
 
-
+require('../../global.less');
 
 // hot module replacement
 if (module.hot) {

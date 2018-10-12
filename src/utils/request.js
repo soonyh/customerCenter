@@ -1,6 +1,6 @@
 // import fetch from 'dva/fetch';
 import { Message, notification } from 'antd';
-import globalConfig from "../../config/global.config";
+import defaultSettings from '@/defaultSettings';
 import router from 'umi/router';
 import hash from 'hash.js';
 import { isAntdPro } from './utils';
@@ -74,10 +74,10 @@ const codeMessage = {
 };
 export default function request(url, options) {
     options = $.extend({url:url},{
-        showMask: true, //是否采用默认的全局遮罩
+        showMask: false, //是否采用默认的全局遮罩
         showError: true, //是否采用默认的错误提示
         type: "post",
-        timeout:globalConfig.timeout,
+        timeout:defaultSettings.timeout,
         dataType: "json"
     }, options);
     let deferred  = $.Deferred();

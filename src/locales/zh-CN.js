@@ -198,7 +198,8 @@ export default {
   /*menu*/
   'menu.log': '日志管理',  
   'menu.log.analysis': '日志分析', 
-  'menu.log.detail': '日志详情', 
+  'menu.log.detail': '日志详情',
+  /* */ 
   /*user*/  
   'welcomeLogin':'欢迎登录',  
   'jobNumber':'工号',
@@ -207,5 +208,6 @@ export default {
   'passwordHelp':'数字、字母或下划线，长度>=8',
   'forgotPassword':'忘记密码',
   'rememberJobNumber':'记住工号', 
-  'ipAddress':'IP地址',  
+  'ipAddress':'IP地址',
+  'logoutConfirm':"确定要现在退出吗？"  
 };

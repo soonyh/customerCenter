@@ -61,13 +61,18 @@ let routes = [
     "Routes": [require('../Authorized').default],
     "authority": [
       "admin",
-      "user"
+      "user",
+      "test"
     ],
     "routes": [
       {
         "path": "/dashboard",
         "name": "dashboard",
         "icon": "dashboard",
+        "authority": [
+          "admin",
+          "user"
+        ],
         "component": require('../Dashboard').default,
         "exact": true,
         "_title": "政企客户中心",
@@ -77,6 +82,10 @@ let routes = [
         "path": "/form",
         "name": "form",
         "icon": "form",
+        "authority": [
+          "admin",
+          "user"
+        ],
         "routes": [
           {
             "path": "/form/basic-form",
@@ -119,7 +128,7 @@ let routes = [
         "name": "log",
         "icon": "form",
         "authority": [
-          "admin"
+          "test"
         ],
         "routes": [
           {
@@ -159,12 +168,33 @@ let routes = [
           },
           {
             "path": "/log/detail",
-            "component": require('../Log/Detail/Time').default,
+            "component": require('../Log/Detail/BaseView').default,
             "name": "detail",
             "routes": [
               {
-                "path": "/log/detail/time",
-                "component": require('../Log/Detail/Time').default,
+                "path": "/log/detail/click",
+                "component": require('../Log/Detail/Click').default,
+                "exact": true,
+                "_title": "政企客户中心",
+                "_title_default": "政企客户中心"
+              },
+              {
+                "path": "/log/detail/login",
+                "component": require('../Log/Detail/login').default,
+                "exact": true,
+                "_title": "政企客户中心",
+                "_title_default": "政企客户中心"
+              },
+              {
+                "path": "/log/detail/exception",
+                "component": require('../Log/Detail/Exception').default,
+                "exact": true,
+                "_title": "政企客户中心",
+                "_title_default": "政企客户中心"
+              },
+              {
+                "path": "/log/detail/function",
+                "component": require('../Log/Detail/Function').default,
                 "exact": true,
                 "_title": "政企客户中心",
                 "_title_default": "政企客户中心"
