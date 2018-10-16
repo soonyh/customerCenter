@@ -5,7 +5,6 @@ import defaultSettings from '../src/defaultSettings';
 import path from 'path';
 
 // import webpackplugin from './plugin.config';
-// import defaultSettings from '../src/defaultSettings';
 export default {
   // add for transfer to umi
   plugins: [
@@ -16,9 +15,10 @@ export default {
         antd: true, //引入 antd 并实现按需编译
         dva: true,
         title: defaultSettings.name,
-        // dynamicImport: {
-        //   loadingComponent: './components/PageLoading/index',
-        // },
+        dynamicImport: {
+          // webpackChunkName:true,
+          loadingComponent: './components/PageLoading/index',
+        },
         locale: {
           enable: true, // default false
           default: defaultSettings.language, // default zh-CN

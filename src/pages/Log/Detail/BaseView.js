@@ -8,7 +8,7 @@ import styles from './BaseView.less';
 import Function from './Function';
 import Exception from './Exception';
 import Click from './Click';
-import Login from './Login';
+import LoginDetailPage from './LoginDetailPage';
 
 const { Item } = Menu;
 const SubMenu = Menu.SubMenu;
@@ -76,7 +76,7 @@ class BaseView extends Component {
     } else if (key == 'exception') {
       return <Exception />;
     } else if (key == 'login') {
-      return <Login />;
+      return <LoginDetailPage />;
     } else if (key == 'function') {
       return <Function />;
     }

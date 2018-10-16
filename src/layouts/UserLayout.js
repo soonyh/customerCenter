@@ -6,12 +6,6 @@ import styles from "./UserLayout.less";
 import logo from "./img/logo.png";
 import zhengQi from "./img/pic_zhengqi.png";
 
-const copyright = (
-    <Fragment>
-        Copyright <Icon type="copyright" /> 2018 蚂蚁金服体验技术部出品
-    </Fragment>
-);
-
 class UserLayout extends React.PureComponent {
     // @TODO title
     // getPageTitle() {

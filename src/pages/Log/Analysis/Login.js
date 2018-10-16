@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => {
   mapStateToProps,
   mapDispatchToProps
 )
-class Demo extends React.Component {
+class Login extends React.Component {
   state = {
     cols: {
       percent: {
@@ -215,4 +215,4 @@ class Demo extends React.Component {
   }
 }
 
-export default Demo;
+export default Login;

@@ -23,25 +23,25 @@ let routes = [
   },
   {
     "path": "/user",
-    "component": require('../../layouts/UserLayout').default,
+    "component": dynamic({ loader: () => import('../../layouts/UserLayout'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
     "routes": [
       {
         "path": "/user/login",
-        "component": require('../User2/Login').default,
+        "component": dynamic({ loader: () => import('../User2/Login'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
         "exact": true,
         "_title": "政企客户中心",
         "_title_default": "政企客户中心"
       },
       {
         "path": "/user/register",
-        "component": require('../User/Register').default,
+        "component": dynamic({ loader: () => import('../User/Register'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
         "exact": true,
         "_title": "政企客户中心",
         "_title_default": "政企客户中心"
       },
       {
         "path": "/user/register-result",
-        "component": require('../User/RegisterResult').default,
+        "component": dynamic({ loader: () => import('../User/RegisterResult'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
         "exact": true,
         "_title": "政企客户中心",
         "_title_default": "政企客户中心"
@@ -57,7 +57,7 @@ let routes = [
   },
   {
     "path": "/",
-    "component": require('../../layouts/BasicLayout').default,
+    "component": dynamic({ loader: () => import('../../layouts/BasicLayout'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
     "Routes": [require('../Authorized').default],
     "authority": [
       "admin",
@@ -73,7 +73,7 @@ let routes = [
           "admin",
           "user"
         ],
-        "component": require('../Dashboard').default,
+        "component": dynamic({ loader: () => import('../Dashboard'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
         "exact": true,
         "_title": "政企客户中心",
         "_title_default": "政企客户中心"
@@ -89,7 +89,7 @@ let routes = [
         "routes": [
           {
             "path": "/form/basic-form",
-            "component": require('../Form/BasicForm').default,
+            "component": dynamic({ loader: () => import('../Form/BasicForm'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
             "name": "basicform",
             "authority": [
               "user"
@@ -100,7 +100,7 @@ let routes = [
           },
           {
             "path": "/form/step-form",
-            "component": require('../Form/StepForm').default,
+            "component": dynamic({ loader: () => import('../Form/StepForm'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
             "name": "stepform",
             "exact": true,
             "_title": "政企客户中心",
@@ -108,7 +108,7 @@ let routes = [
           },
           {
             "path": "/form/advanced-form",
-            "component": require('../Form/AdvancedForm').default,
+            "component": dynamic({ loader: () => import('../Form/AdvancedForm'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
             "name": "advancedform",
             "exact": true,
             "_title": "政企客户中心",
@@ -126,33 +126,33 @@ let routes = [
       {
         "path": "/log",
         "name": "log",
-        "icon": "form",
+        "icon": "calendar",
         "authority": [
           "test"
         ],
         "routes": [
           {
             "path": "/log/analysis",
-            "component": require('../Log/Analysis/BaseView').default,
+            "component": dynamic({ loader: () => import('../Log/Analysis/BaseView'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
             "name": "analysis",
             "routes": [
               {
                 "path": "/log/analysis/menu",
-                "component": require('../Log/Analysis/Menu').default,
+                "component": dynamic({ loader: () => import('../Log/Analysis/Menu'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
                 "exact": true,
                 "_title": "政企客户中心",
                 "_title_default": "政企客户中心"
               },
               {
                 "path": "/log/analysis/business",
-                "component": require('../Log/Analysis/Business').default,
+                "component": dynamic({ loader: () => import('../Log/Analysis/Business'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
                 "exact": true,
                 "_title": "政企客户中心",
                 "_title_default": "政企客户中心"
               },
               {
                 "path": "/log/analysis/login",
-                "component": require('../Log/Analysis/Login').default,
+                "component": dynamic({ loader: () => import('../Log/Analysis/Login'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
                 "exact": true,
                 "_title": "政企客户中心",
                 "_title_default": "政企客户中心"
@@ -168,33 +168,33 @@ let routes = [
           },
           {
             "path": "/log/detail",
-            "component": require('../Log/Detail/BaseView').default,
+            "component": dynamic({ loader: () => import('../Log/Detail/BaseView'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
             "name": "detail",
             "routes": [
               {
                 "path": "/log/detail/click",
-                "component": require('../Log/Detail/Click').default,
+                "component": dynamic({ loader: () => import('../Log/Detail/Click'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
                 "exact": true,
                 "_title": "政企客户中心",
                 "_title_default": "政企客户中心"
               },
               {
-                "path": "/log/detail/login",
-                "component": require('../Log/Detail/login').default,
+                "path": "/log/detail/loginDetailPage",
+                "component": dynamic({ loader: () => import('../Log/Detail/LoginDetailPage'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
                 "exact": true,
                 "_title": "政企客户中心",
                 "_title_default": "政企客户中心"
               },
               {
                 "path": "/log/detail/exception",
-                "component": require('../Log/Detail/Exception').default,
+                "component": dynamic({ loader: () => import('../Log/Detail/Exception'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
                 "exact": true,
                 "_title": "政企客户中心",
                 "_title_default": "政企客户中心"
               },
               {
                 "path": "/log/detail/function",
-                "component": require('../Log/Detail/Function').default,
+                "component": dynamic({ loader: () => import('../Log/Detail/Function'), loading: require('E:/weiyun/apache-tomcat-7.0.86-windows-x64/webapps/lab/first-app-umi/src/components/PageLoading/index').default  }),
                 "exact": true,
                 "_title": "政企客户中心",
                 "_title_default": "政企客户中心"

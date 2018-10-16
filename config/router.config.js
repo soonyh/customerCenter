@@ -55,7 +55,7 @@ export default [
             {
                 path: "/log",
                 name: "log",
-                icon: "form",
+                icon: "calendar",
                 authority: ["test"],
                 routes: [
                     {
@@ -87,8 +87,8 @@ export default [
                                 component:"/Log/Detail/Click"
                             },
                             {
-                                path: "/log/detail/login",
-                                component:"/Log/Detail/login"
+                                path: "/log/detail/loginDetailPage",
+                                component:"/Log/Detail/LoginDetailPage"
                             },
                             {
                                 path: "/log/detail/exception",

@@ -5,7 +5,7 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import { Layout, Menu, Icon, Tabs, Button } from 'antd';
 import DocumentTitle from 'react-document-title';
 import pathToRegexp from 'path-to-regexp';
-
+import Debounce from 'lodash-decorators/debounce';
 import Link from 'umi/link';
 import { formatMessage } from 'umi/locale';
 import Header from './Header';
@@ -79,7 +79,6 @@ class BasicLayout extends React.PureComponent {
   }
 
   state = {
-    collapsed: false,
     // tab模式相关的状态
     currentTabKey: '', // 当前激活的是哪个tab
     tabPanes: [], // 当前总共有哪些tab
@@ -327,7 +326,7 @@ class BasicLayout extends React.PureComponent {
       return <div>欢迎</div>;
     } else {
       return (
-        <Authorized authority={routerConfig.authority} noMatch={<Exception403 />}>          
+        <Authorized authority={routerConfig.authority} noMatch={<Exception403 />}>
           <StickyContainer>
             <Tabs
               activeKey={this.state.currentTabKey}
@@ -351,6 +350,22 @@ class BasicLayout extends React.PureComponent {
     }
   }
 
+  @Debounce(300)
+  triggerResizeEvent() {
+    // eslint-disable-line
+    const event = document.createEvent('HTMLEvents');
+    event.initEvent('resize', true, false);
+    window.dispatchEvent(event);
+  }
+
+  handleMenuCollapse = collapsed => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'global/changeLayoutCollapsed',
+      payload: collapsed,
+    });
+    this.triggerResizeEvent();
+  };
   render() {
     const {
       navTheme,
@@ -359,23 +374,8 @@ class BasicLayout extends React.PureComponent {
       location: { pathname },
     } = this.props;
 
-    // console.log("this.props.route.routes");
-    // console.log(JSON.stringify(this.props.route.routes, null, "\t"));
-
     const menuData = this.getMenuData();
-
-    // console.log("menuData after formatter this.props.route.routes");
-    // console.log(JSON.stringify(menuData, null, "\t"));
-
-    // console.info("pathname", this.props.location.pathname);
-
     const routerConfig = this.matchParamsPath(pathname);
-
-    // console.log("this.breadcrumbNameMap 和 menuData有关");
-    // console.log(JSON.stringify(this.getBreadcrumbNameMap(), null, "\t"));
-
-    // console.log("routerConfig");
-    // console.log(JSON.stringify(this.matchParamsPath(pathname), null, "\t"));
 
     return (
       <DocumentTitle title={`${this.getTabTitle(pathname)} - ${defaultSettings.name}`}>
@@ -383,10 +383,11 @@ class BasicLayout extends React.PureComponent {
           <Header />
           <Layout className={styles.content}>
             <SiderMenu
-              logo={null}
+              collapsible={true}
+              collapsed
               Authorized={Authorized}
               theme={navTheme}
-              onCollapse={false}
+              onCollapse={this.handleMenuCollapse}
               menuData={menuData}
               {...this.props}
             />
