@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import router from 'umi/router';
 import { FormattedMessage } from 'umi/locale';
-import { Menu,Icon } from 'antd';
+import { Menu, Icon } from 'antd-x';
 import GridContent from '@/components/PageHeaderWrapper/GridContent';
-import styles from './BaseView.less';
+import styles from '../log.less';
 import MenuPage from './Menu';
 import Business from './Business';
 import Login from './Login';
@@ -22,7 +22,7 @@ class BaseView extends Component {
     const menuMap = {
       menu: 'menu',
       business: 'business',
-      login: 'login'
+      login: 'login',
     };
     const key = location.pathname.replace(`${match.path}/`, '');
     this.state = {
@@ -66,16 +66,16 @@ class BaseView extends Component {
     this.setState({
       selectKey: key,
     });
-  };  
+  };
 
-  getChildren = (key) => {
-    if(key == 'menu'){
-      return <MenuPage/>
-    }else if(key == 'business'){
-      return <Business/>
-    }else if(key == 'login'){
-      return <Login/>
-    }    
+  getChildren = key => {
+    if (key == 'menu') {
+      return <MenuPage />;
+    } else if (key == 'business') {
+      return <Business />;
+    } else if (key == 'login') {
+      return <Login />;
+    }
   };
 
   resize = () => {
@@ -105,28 +105,45 @@ class BaseView extends Component {
     const { mode, selectKey } = this.state;
     return (
       // <GridContent>
-        <div
-          className={`${styles.main} clearfix`}
-          ref={ref => {
-            this.main = ref;
-          }}
-        >
-          <div className={styles.leftmenu}>
-            <Menu mode={mode} selectedKeys={[selectKey]} onClick={this.selectKey} defaultOpenKeys={['sub1','sub2']}>
-              <SubMenu key="sub1" title={<span><span>行为分析</span></span>}>
-                  <Menu.Item key="menu">菜单点击分析</Menu.Item>
-                  <Menu.Item key="business">业务功能点击分析</Menu.Item>
-                  <Menu.Item key="login">登录分析</Menu.Item>
-              </SubMenu>
-              <SubMenu key="sub2" title={<span><span>页面加载时间分析</span></span>}>
-                  <Menu.Item key="timer">耗时统计日志分析</Menu.Item>
-              </SubMenu>
-            </Menu>
-          </div>
-          <div className={styles.right}>
-            {this.getChildren(selectKey)}
-          </div>
+      <div
+        className={`${styles.main} clearfix`}
+        ref={ref => {
+          this.main = ref;
+        }}
+      >
+        <div className={styles.leftmenu}>
+          <Menu
+            mode={mode}
+            selectedKeys={[selectKey]}
+            onClick={this.selectKey}
+            defaultOpenKeys={['sub1', 'sub2']}
+          >
+            <SubMenu
+              key="sub1"
+              title={
+                <span>
+                  <span>行为分析</span>
+                </span>
+              }
+            >
+              <Menu.Item key="menu">菜单点击分析</Menu.Item>
+              <Menu.Item key="business">业务功能点击分析</Menu.Item>
+              <Menu.Item key="login">登录分析</Menu.Item>
+            </SubMenu>
+            <SubMenu
+              key="sub2"
+              title={
+                <span>
+                  <span>页面加载时间分析</span>
+                </span>
+              }
+            >
+              <Menu.Item key="timer">耗时统计日志分析</Menu.Item>
+            </SubMenu>
+          </Menu>
         </div>
+        <div className={styles.right}>{this.getChildren(selectKey)}</div>
+      </div>
       // </GridContent >
     );
   }

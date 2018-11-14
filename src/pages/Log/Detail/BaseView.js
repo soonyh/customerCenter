@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import router from 'umi/router';
 import { FormattedMessage } from 'umi/locale';
-import { Menu, Icon } from 'antd';
+import { Menu, Icon, Tabs } from 'antd-x';
 import GridContent from '@/components/PageHeaderWrapper/GridContent';
-import styles from './BaseView.less';
-import Function from './Function';
+import styles from '../log.less';
+import FunctionOperation from './FunctionOperation';
 import Exception from './Exception';
-import Click from './Click';
+import UserClick from './UserClick';
 import LoginDetailPage from './LoginDetailPage';
 
 const { Item } = Menu;
 const SubMenu = Menu.SubMenu;
+const TabPane = Tabs.TabPane;
 
 @connect(({ user }) => ({
   currentUser: user.currentUser,
@@ -21,9 +22,9 @@ class BaseView extends Component {
     super(props);
     const { match, location } = props;
     const menuMap = {
-      menu: 'click',
-      business: 'function',
-      business: 'exception',
+      userClick: 'userClick',
+      functionOperation: 'functionOperation',
+      exception: 'exception',
       login: 'login',
     };
     const key = location.pathname.replace(`${match.path}/`, '');
@@ -71,14 +72,14 @@ class BaseView extends Component {
   };
 
   getChildren = key => {
-    if (key == 'click') {
-      return <Click />;
+    if (key == 'userClick') {
+      return <UserClick />;
     } else if (key == 'exception') {
       return <Exception />;
     } else if (key == 'login') {
       return <LoginDetailPage />;
-    } else if (key == 'function') {
-      return <Function />;
+    } else if (key == 'functionOperation') {
+      return <FunctionOperation />;
     }
   };
 
@@ -115,11 +116,25 @@ class BaseView extends Component {
           this.main = ref;
         }}
       >
+        {/* <Tabs defaultActiveKey="1" tabPosition="left">
+          <TabPane tab="登录日志" key="1">
+            <LoginDetailPage />
+          </TabPane>
+          <TabPane tab="点击日志" key="2">
+            <UserClick />
+          </TabPane>
+          <TabPane tab="功能操作日志" key="3">
+            <FunctionOperation />
+          </TabPane>
+          <TabPane tab="异常日志" key="4">
+            <Exception />
+          </TabPane>
+        </Tabs> */}
         <div className={styles.leftmenu}>
           <Menu mode={mode} selectedKeys={[selectKey]} onClick={this.selectKey}>
             <Menu.Item key="login">登录日志</Menu.Item>
-            <Menu.Item key="click">点击日志</Menu.Item>
-            <Menu.Item key="function">功能操作日志</Menu.Item>
+            <Menu.Item key="userClick">点击日志</Menu.Item>
+            <Menu.Item key="functionOperation">功能操作日志</Menu.Item>
             <Menu.Item key="exception">异常日志</Menu.Item>
           </Menu>
         </div>

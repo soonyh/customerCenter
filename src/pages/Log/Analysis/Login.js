@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Icon, Row, Col,Divider } from 'antd';
+import { Icon, Row, Col, Divider } from 'antd-x';
 import { TimelineChart, Pie, yuan } from '@/components/Charts';
 import {
   G2,
@@ -115,7 +115,12 @@ class Login extends React.Component {
           </span>
         </div>
         <div className="panel-body">
-          <TimelineChart height={300} padding={[50,50,50,50]} data={this.state.chartData} titleMap={{ y1: '登录数' }} />
+          <TimelineChart
+            height={300}
+            padding={[50, 50, 50, 50]}
+            data={this.state.chartData}
+            titleMap={{ y1: '登录数' }}
+          />
           <Divider style={{ margin: '32px 0 32px' }} />
           <Row gutter={16}>
             <Col span={12}>

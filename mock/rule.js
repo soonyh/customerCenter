@@ -64,11 +64,15 @@ function getRule(req, res, u) {
   }
 
   const result = {
-    list: dataSource,
-    pagination: {
-      total: dataSource.length,
-      pageSize,
-      current: parseInt(params.currentPage, 10) || 1,
+    resultCode: '0',
+    resultMsg: '成功',
+    resultObject: {
+      list: dataSource,
+      pagination: {
+        total: dataSource.length,
+        pageSize,
+        current: parseInt(params.currentPage, 10) || 1,
+      },
     },
   };
 
@@ -123,9 +127,13 @@ function postRule(req, res, u, b) {
   }
 
   const result = {
-    list: tableListDataSource,
-    pagination: {
-      total: tableListDataSource.length,
+    resultCode: '0',
+    resultMsg: '成功',
+    resultObject: {
+      list: tableListDataSource,
+      pagination: {
+        total: tableListDataSource.length,
+      },
     },
   };
 

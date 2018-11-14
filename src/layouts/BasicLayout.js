@@ -1,12 +1,14 @@
 // import 'raf/polyfill';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'dva';
 import { StickyContainer, Sticky } from 'react-sticky';
-import { Layout, Menu, Icon, Tabs, Button } from 'antd';
+import { Layout, Menu, Icon, Tabs, Button } from 'antd-x';
 import DocumentTitle from 'react-document-title';
 import pathToRegexp from 'path-to-regexp';
 import Debounce from 'lodash-decorators/debounce';
 import Link from 'umi/link';
+import isEqual from 'lodash/isEqual';
+import memoizeOne from 'memoize-one';
 import { formatMessage } from 'umi/locale';
 import Header from './Header';
 import SiderMenu from '@/components/SiderMenu';
@@ -16,10 +18,7 @@ import defaultSettings from '@/defaultSettings';
 import styles from './layout.less';
 import Exception403 from '../pages/Exception/403';
 import Exception404 from '../pages/Exception/404';
-
-// require('raf').polyfill(window);
-// global.Intl = require('intl');
-// window.Intl = require('intl');
+import 'antd-x/dist/antd-x.css';
 
 // 引入子菜单组件
 const { Footer, Sider, Content } = Layout;
@@ -59,11 +58,11 @@ const renderTabBar = (props, DefaultTabBar) => (
         {...props}
         style={{
           ...style,
-          zIndex: 1,
-          background: '#fafafa',
-          boxShadow: '0 6px 10px 0 rgba(0,0,0,.04)',
+          zIndex: 10,
           top: 60,
+          marginBottom: 0,
         }}
+        className={styles.tabsBar}
       />
     )}
   </Sticky>
@@ -73,7 +72,7 @@ class BasicLayout extends React.PureComponent {
   constructor(props) {
     super(props);
     // this.getPageTitle = memoizeOne(this.getPageTitle);
-    // this.getBreadcrumbNameMap = memoizeOne(this.getBreadcrumbNameMap, isEqual);
+    this.getBreadcrumbNameMap = memoizeOne(this.getBreadcrumbNameMap, isEqual);
     this.breadcrumbNameMap = this.getBreadcrumbNameMap();
     // this.matchParamsPath = memoizeOne(this.matchParamsPath, isEqual);
   }
@@ -323,7 +322,11 @@ class BasicLayout extends React.PureComponent {
   renderBody(routerConfig) {
     // 如果没有tab可以显示, 就显示欢迎界面
     if (this.state.tabPanes.length === 0) {
-      return <div>欢迎</div>;
+      return (
+        <Fragment>
+          <Exception404 />
+        </Fragment>
+      );
     } else {
       return (
         <Authorized authority={routerConfig.authority} noMatch={<Exception403 />}>
@@ -336,10 +339,10 @@ class BasicLayout extends React.PureComponent {
               onChange={this.onTabChange}
               hideAdd
               animated={true}
-              className="bss-tabs"
+              className="bss-content"
             >
               {this.state.tabPanes.map(pane => (
-                <TabPane tab={pane.title} key={pane.key} closable={true}>
+                <TabPane tab={pane.title} key={pane.key} closable={true} className={styles.content}>
                   {pane.content}
                 </TabPane>
               ))}
@@ -350,7 +353,7 @@ class BasicLayout extends React.PureComponent {
     }
   }
 
-  @Debounce(300)
+  @Debounce(200)
   triggerResizeEvent() {
     // eslint-disable-line
     const event = document.createEvent('HTMLEvents');
@@ -365,7 +368,25 @@ class BasicLayout extends React.PureComponent {
       payload: collapsed,
     });
     this.triggerResizeEvent();
+    this.getContentStyle();
   };
+
+  /**
+   * siderbar 固定时需要给content区域设置一个paddingLeft
+   */
+  getContentStyle() {    
+    const { collapsed } = this.props;
+    const siderWidth = collapsed ? '80px' : defaultSettings.siderWidth + 'px';
+
+    if (!defaultSettings.fixSiderbar) {
+      return {};
+    }
+    if (collapsed) {
+      return { paddingLeft: '80px'};
+    }
+    return { paddingLeft: defaultSettings.siderWidth};
+  }
+
   render() {
     const {
       navTheme,
@@ -381,7 +402,7 @@ class BasicLayout extends React.PureComponent {
       <DocumentTitle title={`${this.getTabTitle(pathname)} - ${defaultSettings.name}`}>
         <Layout>
           <Header />
-          <Layout className={styles.content}>
+          <Layout className={styles.main}>
             <SiderMenu
               collapsible={true}
               collapsed
@@ -391,7 +412,7 @@ class BasicLayout extends React.PureComponent {
               menuData={menuData}
               {...this.props}
             />
-            <Layout>{this.renderBody(routerConfig)}</Layout>
+            <Layout style={{...this.getContentStyle(),width:'100%'}}>{this.renderBody(routerConfig)}</Layout>
           </Layout>
         </Layout>
       </DocumentTitle>

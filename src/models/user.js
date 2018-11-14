@@ -21,13 +21,11 @@ export default {
         const response = yield call(queryCurrent);
         yield put({
           type: 'saveCurrentUser',
-          payload: response,
+          payload: response.resultObject,
         });
+      } catch (error) {
+        yield put({ type: 'saveCurrentUser', error });
       }
-      catch (error) {
-        yield put({ type: 'saveCurrentUser', error })
-      }
-
     },
   },
 

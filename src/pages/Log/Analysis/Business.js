@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Button, Icon } from 'antd';
+import { Row, Col, Button, Icon } from 'antd-x';
 import {
   G2,
   Chart,
@@ -16,7 +16,7 @@ import {
   Util,
 } from 'bizcharts';
 import DataSet from '@antv/data-set';
-import styles from './BaseView.less';
+import styles from '../log.less';
 
 class Basic extends React.Component {
   render() {
@@ -61,7 +61,7 @@ class Basic extends React.Component {
           </span>
         </div>
         <div className="panel-body">
-          <Row gutter={32} style={{padding:"20px"}}>
+          <Row gutter={32} style={{ padding: '20px' }}>
             <Col span={18}>
               <Chart height={400} data={dv} forceFit>
                 <Coord transpose />

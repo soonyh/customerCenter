@@ -1,5 +1,26 @@
 import mockjs from 'mockjs';
 
+
+/**
+ * 从 www.abc.com?id=1&name=soon 字符串中提取 对应key的值
+ * @ paramName {String}
+ * @ searchString {String}
+ */
+function getURLParameter(paramName, searchString) {
+  var searchString = searchString.split('?')[1],
+    i,
+    val,
+    params = searchString.split('&');
+
+  for (i = 0; i < params.length; i++) {
+    val = params[i].split('=');
+    if (val[0] == paramName) {
+      return decodeURIComponent(val[1]);
+    }
+  }
+  return null;
+}
+
 const titles = [
   'Alipay',
   'Angular',
@@ -41,7 +62,7 @@ const covers = [
   'https://gw.alipayobjects.com/zos/rmsportal/gLaIAoVWTtLbBWZNYEMg.png',
 ];
 const desc = [
-  '那是一种内在的东西， 他们到达不了，也无法触及的',
+  '那是一种内在的东西， 他们到达不了，也无法触及的那是一种内在的东西， 他们到达不了，也无法触及的那是一种内在的东西， 他们到达不了，也无法触及的',
   '希望是一个好东西，也许是最好的，好东西是不会消亡的',
   '生命就像一盒巧克力，结果往往出人意料',
   '城镇中有那么多的酒馆，她却偏偏走进了我的酒馆',
@@ -325,12 +346,25 @@ export default {
   'GET /api/project/notice': getNotice,
   'GET /api/activities': getActivities,
   'POST /api/forms': (req, res) => {
-    res.send({ message: 'Ok' });
+    res.send({
+      resultCode: '0',
+      resultMsg: '操作成功!',
+      resultObject: {},
+    });
   },
   'GET /api/tags': mockjs.mock({
     'list|100': [{ name: '@city', 'value|1-100': 150, 'type|0-2': 1 }],
   }),
-  'GET /api/fake_list': getFakeList,
+  'GET /api/fake_list': (req, res) => {    
+    const count = getURLParameter('count', req.url) * 1 || 20;
+    const result = fakeList(count);
+    sourceData = result;
+    res.status(200).send({
+      resultCode: '0',
+      resultMsg: '操作成功!',
+      resultObject: result,
+    });
+  },
   'POST /api/fake_list': postFakeList,
   'GET /api/captcha': getFakeCaptcha,
 };

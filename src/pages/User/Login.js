@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
+import { formatMessage, setLocale, getLocale, FormattedMessage } from 'umi/locale';
 import { connect } from 'dva';
 import Link from 'umi/link';
-import { Checkbox, Alert, Icon } from 'antd';
+import { Alert, Form, Icon, Input, Button, Checkbox, Row, Col } from 'antd-x';
 import Login from '@/components/Login';
-import styles from './Login.less';
+import vcode from './img/vcode.jpg';
+const FormItem = Form.Item;
 
-const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
+const tailFormItemLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
+    },
+    sm: {
+      span: 16,
+      offset: 8,
+    },
+  },
+};
 
-// @connect(({ login, loading }) => ({
-//   login,
-//   submitting: loading.effects['login/login'],
-// }))
+@connect(({ login, loading }) => ({
+  login,
+  submitting: loading.effects['login/login'],
+}))
 class LoginPage extends Component {
   state = {
     type: 'account',
@@ -38,18 +51,21 @@ class LoginPage extends Component {
       });
     });
 
-  handleSubmit = (err, values) => {
+  handleSubmit = e => {
+    e.preventDefault();
     const { type } = this.state;
-    if (!err) {
-      const { dispatch } = this.props;
-      dispatch({
-        type: 'login/login',
-        payload: {
-          ...values,
-          type,
-        },
-      });
-    }
+    const { dispatch } = this.props;
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        dispatch({
+          type: 'login/login',
+          payload: {
+            ...values,
+            type,
+          },
+        });        
+      }
+    });
   };
 
   changeAutoLogin = e => {
@@ -65,58 +81,114 @@ class LoginPage extends Component {
   render() {
     const { login, submitting } = this.props;
     const { type, autoLogin } = this.state;
+    const { getFieldDecorator } = this.props.form;
     return (
-      <div className={styles.main}>
-        <Login
-          defaultActiveKey={type}
-          onTabChange={this.onTabChange}
-          onSubmit={this.handleSubmit}
-          ref={form => {
-            this.loginForm = form;
-          }}
-        >
-          <Tab key="account" tab="账户密码登录">
-            {/* {login.status === 'error' &&
-              login.type === 'account' &&
-              !submitting &&
-              this.renderMessage('账户或密码错误（admin/888888）')} */}
-            <UserName name="userName" placeholder="admin/user" />
-            <Password
-              name="password"
-              placeholder="888888/123456"
-              onPressEnter={() => this.loginForm.validateFields(this.handleSubmit)}
-            />
-          </Tab>
-          <Tab key="mobile" tab="手机号登录">
-            {/* {login.status === 'error' &&
-              login.type === 'mobile' &&
-              !submitting &&
-              this.renderMessage('验证码错误')} */}
-            <Mobile name="mobile" />
-            <Captcha name="captcha" countDown={120} onGetCaptcha={this.onGetCaptcha} />
-          </Tab>
-          <div>
-            <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
-              自动登录
-            </Checkbox>
-            <a style={{ float: 'right' }} href="">
-              忘记密码
-            </a>
+      <Form onSubmit={this.handleSubmit} className="login-box">
+        <div className="login-box-container" style={{ minHeight: '320px' }}>
+          <div className="login-box-cont">
+            <div className="login-title">{formatMessage({ id: 'welcomeLogin' })}</div>
+
+            <FormItem>
+              {getFieldDecorator('jobNumber', {
+                rules: [
+                  {
+                    required: true,
+                    // type: 'string',
+                    // len: 8,
+                    message: formatMessage({ id: 'jobNumberHelp' }),
+                  },
+                ],
+              })(
+                <Input
+                  prefix={
+                    <Icon
+                      type="user"
+                      style={{
+                        color: 'rgba(0,0,0,.25)',
+                      }}
+                    />
+                  }
+                  placeholder="test"
+                />
+              )}
+            </FormItem>
+            <FormItem>
+              {getFieldDecorator('password', {
+                rules: [
+                  {
+                    required: true,
+                    // min: 8,
+                    message: formatMessage({ id: 'passwordHelp' }),
+                  },
+                ],
+              })(
+                <Input
+                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  type="password"
+                  placeholder="123456"
+                />
+              )}
+            </FormItem>
+            {/* <FormItem
+              {...formItemLayout}
+            >
+              <Row gutter={8}>
+                <Col span={12}>
+                  {getFieldDecorator('captcha', {
+                    rules: [{ required: true, message: 'Please input the captcha you got!' }],
+                  })(
+                    <Input />
+                  )}
+                </Col>
+                <Col span={12}>
+                  
+                </Col>
+              </Row>
+            </FormItem> */}
+            <div className="login-form-control">
+              <Row>
+                <Col span={8} align="center">
+                  {getFieldDecorator('remember', {
+                    valuePropName: 'checked',
+                    initialValue: true,
+                  })(
+                    <Checkbox
+                      style={{
+                        fontSize: '12px',
+                        marginTop: '30px',
+                      }}
+                    >
+                      {formatMessage({ id: 'rememberJobNumber' })}
+                    </Checkbox>
+                  )}
+                </Col>
+                <Col span={8} align="center">
+                  <Button type="primary" htmlType="submit" className="btn-login" loading={submitting} style={{paddingLeft:0}}>
+                    {submitting ? null : <Icon type="arrow-right" />}
+                  </Button>
+                </Col>
+                <Col span={8} align="center" style={{ paddingTop: '30px' }}>
+                  <a href="" style={{ fontSize: '12px' }}>
+                    {formatMessage({ id: 'forgotPassword' })}
+                  </a>
+                </Col>
+              </Row>
+            </div>
           </div>
-          <Submit loading={submitting}>登录</Submit>
-          <div className={styles.other}>
-            其他登录方式
-            <Icon type="alipay-circle" className={styles.icon} theme="outlined" />
-            <Icon type="taobao-circle" className={styles.icon} theme="outlined" />
-            <Icon type="weibo-circle" className={styles.icon} theme="outlined" />
-            <Link className={styles.register} to="/User/Register">
-              注册账户
-            </Link>
-          </div>
-        </Login>
-      </div>
+        </div>
+        <div className="login-form-tips">
+          <p>
+            <span className="info-tit">{formatMessage({ id: 'ipAddress' })}：</span>
+            192.168.100.109:8080
+          </p>
+          <p>
+            <span className="info-tit">MAC：</span>
+            00-50-BA-CE-07-0C
+          </p>
+        </div>
+      </Form>
     );
   }
 }
 
-export default LoginPage;
+export default Form.create()(LoginPage);

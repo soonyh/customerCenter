@@ -1,4 +1,4 @@
-import { message } from 'antd';
+import { message } from 'antd-x';
 import defaultSettings from '@/defaultSettings';
 
 let lessNodesAppended;

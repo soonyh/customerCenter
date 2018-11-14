@@ -8,14 +8,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>政企客户中心</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <!-- <script src="https://wzrd.in/standalone/raf@latest"></script> -->
-  <script src="/third-party/polyfill.min.js"></script>
-  <!-- <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en"></script> -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> -->
-  <script src='/third-party/jquery.min.js'></script>
-  <script src="/third-party/jquery.blockUI.min.js"></script>
+  <title><%= context.title %></title>
+  <link rel="icon" href="<%= context.config.publicPath %>favicon.ico" type="image/x-icon">
+  <script src="<%= context.config.publicPath %>third-party/polyfill.min.js"></script>
+  <script src='<%= context.config.publicPath %>third-party/jquery.min.js'></script>
+  <script src="<%= context.config.publicPath %>third-party/jquery.blockUI.min.js"></script>
 </head>
 <body style="background-color:#f0f2f5;">
   <div id="root"></div>

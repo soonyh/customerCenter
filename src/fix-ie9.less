@@ -1,0 +1,64 @@
+.ie9 .ant-layout-sider {
+  float: left;
+}
+/* 隐藏tabs 开始*/
+// .ie9 .bss-content > div:first-child {
+//   display: none;
+// }
+/* 结束*/
+
+.clearfixAfter {
+  content: '.';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  display: block;
+  zoom: 1;
+}
+
+/* 兼容IE9下card布局 开始*/
+.ie9 .ant-card-head-title {
+  float: left;
+}
+/* 结束*/
+
+/* 标准卡片列表 开始*/
+.ie9 {
+  .fix-list-ie9 {
+    .ant-list-item {
+      .clearfix;
+      &:after {
+        .clearfixAfter;
+      }
+      .ant-list-item-meta {
+        .clearfix;
+        float: left;
+        width: 40%;
+        min-width: 450px;
+        &:after {
+          .clearfixAfter;
+        }
+
+        .ant-list-item-meta-avatar {
+          float: left;
+        }
+        .ant-list-item-meta-content {
+          float: left;
+          width: 70%;
+        }
+      }
+      .ant-list-item-content {
+        float: left;
+        min-width: 428px;
+      }
+      .ant-list-item-action {
+        float: right;
+        min-width: 110px;
+      }
+    }
+  }
+}
+/* 结束*/

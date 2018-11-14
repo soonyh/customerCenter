@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Button, Spin, Card } from 'antd';
+import { Button, Spin, Card } from 'antd-x';
 import { connect } from 'dva';
 import styles from './style.less';
 

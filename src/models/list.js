@@ -12,7 +12,7 @@ export default {
       const response = yield call(queryFakeList, payload);
       yield put({
         type: 'queryList',
-        payload: Array.isArray(response) ? response : [],
+        payload: Array.isArray(response.resultObject) ? response.resultObject : [],
       });
     },
     *appendFetch({ payload }, { call, put }) {

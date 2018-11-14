@@ -1,15 +1,24 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Card, DatePicker, Row, Col, Form, Select, Button, Icon, Divider } from 'antd';
+import { Card, DatePicker, Row, Col, Form, Select, Button, Icon, Divider } from 'antd-x';
 import { TimelineChart } from '@/components/Charts';
 import classNames from 'classnames';
-import {FixInputPlaceholderForIE} from '../../../utils/utils';
+import { fixPlaceholderForIE } from '@/utils/utils';
 import iconToday from './img/icon_today.png';
-import styles from './BaseView.less';
+import styles from '../log.less';
 
 const FormItem = Form.Item;
 const { RangePicker } = DatePicker;
-
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 8 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 16 },
+  },
+};
 const namespace = 'log';
 
 const mapStateToProps = state => {
@@ -49,6 +58,7 @@ class MenuPage extends React.Component {
   };
   componentDidMount() {
     this.props.onDidMount();
+    fixPlaceholderForIE();
   }
   static getDerivedStateFromProps(props, state) {
     const { chartData } = props;
@@ -63,23 +73,23 @@ class MenuPage extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    
+
     return (
       <div>
-        <Form className="bss-form-inline">
-          <div className={`${styles.filter} clearfix`}>
-            <div className={styles.filterLeft}>
-              <Button type="primary" className={classNames(styles.today, styles.orange)}>
-                <img src={iconToday} /> 今日
-              </Button>
-              <Button className={classNames(styles.today, styles.blue)}>
-                <img src={iconToday} /> 昨日
-              </Button>
-            </div>
-            <div className={styles.fliterRight}>
+        <div className={`${styles.filter} clearfix`}>
+          <div className={styles.filterLeft}>
+            <Button type="primary" className={classNames(styles.today, styles.orange)}>
+              <img src={iconToday} /> 今日
+            </Button>
+            <Button className={classNames(styles.today, styles.blue)}>
+              <img src={iconToday} /> 昨日
+            </Button>
+          </div>
+          <div className={styles.fliterRight}>
+            <Form>
               <Row gutter={16}>
                 <Col span={8}>
-                  <FormItem label="起止时间">
+                  <FormItem label="起止时间" {...formItemLayout}>
                     {getFieldDecorator(`startDate`, {
                       rules: [
                         {
@@ -88,11 +98,11 @@ class MenuPage extends React.Component {
                           date: true,
                         },
                       ],
-                    })(<RangePicker style={{ width: '100%' }} />)}
+                    })(<RangePicker />)}
                   </FormItem>
                 </Col>
                 <Col span={8}>
-                  <FormItem label="选择角色">
+                  <FormItem label="选择角色" {...formItemLayout}>
                     {getFieldDecorator(`role`, {
                       rules: [
                         {
@@ -108,7 +118,7 @@ class MenuPage extends React.Component {
                   </FormItem>
                 </Col>
                 <Col span={8}>
-                  <FormItem label="选择工号">
+                  <FormItem label="选择工号" {...formItemLayout}>
                     {getFieldDecorator(`jobNumber`, {
                       rules: [
                         {
@@ -124,9 +134,9 @@ class MenuPage extends React.Component {
                   </FormItem>
                 </Col>
               </Row>
-            </div>
+            </Form>
           </div>
-        </Form>
+        </div>
         <div className="panel panel-default">
           <div className="panel-heading">
             <span className="panel-title">菜单点击量分析</span>
@@ -197,7 +207,12 @@ class MenuPage extends React.Component {
               </Col>
             </Row>
             <Divider style={{ margin: '22px 0 32px' }} />
-            <TimelineChart height={295} data={this.state.chartData} padding={[50,50,50,50]} titleMap={{ y1: '点击量' }} />
+            <TimelineChart
+              height={295}
+              data={this.state.chartData}
+              padding={[50, 50, 50, 50]}
+              titleMap={{ y1: '点击量' }}
+            />
           </div>
         </div>
       </div>

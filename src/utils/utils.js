@@ -183,23 +183,23 @@ export function isAntdPro() {
 }
 
 /**
-* IE浏览器检测
-* 
-* 返回值     值类型    值说明
-*    -1      Number    不是ie浏览器
-*    6       Number    ie版本<=6
-*    7       Number    ie7
-*    8       Number    ie8
-*    9       Number    ie9
-*   10       Number    ie10
-*   11       Number    ie11
-*  'edge'    String    ie的edge浏览器
-*/
+ * IE浏览器检测
+ *
+ * 返回值     值类型    值说明
+ *    -1      Number    不是ie浏览器
+ *    6       Number    ie版本<=6
+ *    7       Number    ie7
+ *    8       Number    ie8
+ *    9       Number    ie9
+ *   10       Number    ie10
+ *   11       Number    ie11
+ *  'edge'    String    ie的edge浏览器
+ */
 function IEVersion() {
-  var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串  
-  var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器  
-  var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器  
-  var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+  var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+  var isIE = userAgent.indexOf('compatible') > -1 && userAgent.indexOf('MSIE') > -1; //判断是否IE<11浏览器
+  var isEdge = userAgent.indexOf('Edge') > -1 && !isIE; //判断是否IE的Edge浏览器
+  var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf('rv:11.0') > -1;
   if (isIE) {
     var fIEVersion = userAgent.match(/MSIE (\d+)/)[1];
     if (fIEVersion == 7) {
@@ -216,14 +216,12 @@ function IEVersion() {
   } else if (isEdge) {
     return 'edge'; //edge
   } else if (isIE11) {
-    return 11; //IE11  
+    return 11; //IE11
   } else {
     return -1; //不是ie浏览器
   }
 }
-
-// Fix input placeholder issue for IE8 and IE9
-export function FixInputPlaceholderForIE() {
+const _fixPlaceholderForIE = function() {
   let isIE8 = IEVersion() == 8 ? true : false;
   let isIE9 = IEVersion() == 9 ? true : false;
   //fix html5 placeholder attribute for ie7 & ie8
@@ -252,4 +250,31 @@ export function FixInputPlaceholderForIE() {
       });
     });
   }
+};
+
+// Fix input placeholder issue for IE8 and IE9
+export function fixPlaceholderForIE() {
+  setTimeout(function() {
+    _fixPlaceholderForIE();
+  }, 600);
+}
+
+/**
+ * 从 www.abc.com?id=1&name=soon 字符串中提取 对应key的值
+ * @ paramName {String}
+ * @ searchString {String}
+ */
+export function getURLParameter(paramName, searchString) {
+  var searchString = searchString.split('?')[1],
+    i,
+    val,
+    params = searchString.split('&');
+
+  for (i = 0; i < params.length; i++) {
+    val = params[i].split('=');
+    if (val[0] == paramName) {
+      return decodeURIComponent(val[1]);
+    }
+  }
+  return null;
 }

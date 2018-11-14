@@ -38,6 +38,7 @@ export default {
     // "menu-dark-bg": "#1b1c21",
     // "layout-sider-background": "#363742",
     'menu-dark-item-active-bg': '#363742',
+    'border-radius-base':defaultSettings.borderRadiusBase,
     'link-color': defaultSettings.primaryColor,
     'checkbox-color': defaultSettings.primaryColor,
     'btn-primary-bg': defaultSettings.primaryColor,
@@ -72,6 +73,9 @@ export default {
     path.join(__dirname, '../src/global.less'),
     path.join(__dirname, '../src/layouts/UserLayout.less'),
   ],
+  base:'/unicom-custmer-center/',
+  publicPath:'/unicom-custmer-center/',
+  history: 'hash',
   // 路由配置
   routes: pageRoutes,
 };

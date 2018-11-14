@@ -10,7 +10,7 @@ export async function queryActivities() {
 }
 
 export async function queryRule(params) {
-  return request(`/api/rule?${stringify(params)}`);
+  return request('/api/rule',{method:'get',data:params});
 }
 
 export async function removeRule(params) {
@@ -44,10 +44,8 @@ export async function updateRule(params) {
 }
 
 export async function fakeSubmitForm(params) {
-  return request('/api/forms', {
-    method: 'POST',
-    data: params,
-  });
+  console.log(params);
+  return request('/api/forms', { data: params });
 }
 
 export async function fakeChartData() {
@@ -67,7 +65,7 @@ export async function queryAdvancedProfile() {
 }
 
 export async function queryFakeList(params) {
-  return request(`/api/fake_list?${stringify(params)}`);
+  return request(`/api/fake_list`, { method: 'GET', data: params });
 }
 
 export async function removeFakeList(params) {
@@ -83,7 +81,7 @@ export async function removeFakeList(params) {
 
 export async function addFakeList(params) {
   const { count = 5, ...restParams } = params;
-  return request(`/api/fake_list?count=${count}`, {
+  return request(`/api/fake_list`, {
     method: 'POST',
     data: {
       ...restParams,
@@ -105,8 +103,7 @@ export async function updateFakeList(params) {
 
 export async function fakeAccountLogin(params) {
   return request('/api/login/account', {
-    type: 'POST',
-    showMask:true,
+    method: 'POST',
     data: params,
   });
 }
@@ -125,37 +122,3 @@ export async function queryNotices() {
 export async function getFakeCaptcha(mobile) {
   return request(`/api/captcha?mobile=${mobile}`);
 }
-
-// import { stringify } from 'qs';
-// import Ajax from '@/utils/request';
-
-// const request = new Ajax();
-// export async function fakeAccountLogin(params) {
-//   return request.post('/api/login/account', params);
-// }
-// export async function getFakeCaptcha(mobile) {
-//   return request.post(`/api/captcha?mobile=${mobile}`);
-// }
-
-// import { Message } from 'antd';
-// import request from '@/utils/request';
-
-
-// export async function fakeAccountLogin(params) {
-//   return Ajax({
-//     url: '/api/login/account',
-//     type: 'post',
-//     showMask:true,
-//     dataType: 'json',
-//     data: params,
-//   })
-
-// }
-// export async function getFakeCaptcha(mobile) {
-//   return Ajax({
-//     url: `/api/captcha?mobile=${mobile}`,
-//     type: 'post',
-//     dataType: 'json',
-//     data: params,
-//   })
-// }
