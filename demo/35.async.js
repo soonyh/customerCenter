@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([[35],{k8c7:function(e,t,u){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var n={namespace:"templateKeys",state:{templateKey:"userfunmodule"},reducers:{Edit:function(){return{templateKey:"editmodule"}},UserFun:function(){return{templateKey:"userfunmodule"}}}};t.default=n}}]);
