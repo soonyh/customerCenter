@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Icon, Row, Col, Divider } from 'antd-x';
+import { Icon, Row, Col, Divider } from 'zeal-cube';
 import { TimelineChart, Pie, yuan } from '@/components/Charts';
 import {
   G2,

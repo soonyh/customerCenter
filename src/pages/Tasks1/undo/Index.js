@@ -1,4 +1,4 @@
-import { Card,Input, List, Avatar,Icon,Button } from 'antd-x';
+import { Card,Input, List, Avatar,Icon,Button } from 'zeal-cube';
 import React, { Component } from 'react';
 import styles from './Index.less';
 

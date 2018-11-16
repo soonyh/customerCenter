@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ChartCard, Field, MiniArea, MiniBar, MiniProgress } from '@/components/Charts';
 import Trend from '@/components/Trend';
 import NumberInfo from '@/components/NumberInfo';
-import { Row, Col, Icon, Tooltip } from 'antd-x';
+import { Row, Col, Icon, Tooltip } from 'zeal-cube';
 import numeral from 'numeral';
 import moment from 'moment';
 

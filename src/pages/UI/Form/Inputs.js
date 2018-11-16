@@ -24,7 +24,7 @@ import {
   Upload,
   Modal,
   message,
-} from 'antd-x';
+} from 'zeal-cube';
 import moment from 'moment';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 

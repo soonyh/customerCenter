@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { formatMessage, setLocale, getLocale, FormattedMessage } from 'umi/locale';
 import { connect } from 'dva';
 import Link from 'umi/link';
-import { Alert, Form, Icon, Input, Button, Checkbox, Row, Col } from 'antd-x';
+import { Alert, Form, Icon, Input, Button, Checkbox, Row, Col } from 'zeal-cube';
 import Login from '@/components/Login';
 import vcode from './img/vcode.jpg';
 const FormItem = Form.Item;

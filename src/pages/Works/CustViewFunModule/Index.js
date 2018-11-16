@@ -1,4 +1,4 @@
-import { Card } from 'antd-x';
+import { Card } from 'zeal-cube';
 import React, { Component } from 'react';
 
 class Demo extends React.Component {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import router from 'umi/router';
 import { FormattedMessage } from 'umi/locale';
-import { Menu, Icon } from 'antd-x';
+import { Menu, Icon } from 'zeal-cube';
 import GridContent from '@/components/PageHeaderWrapper/GridContent';
 import styles from '../log.less';
 import MenuPage from './Menu';

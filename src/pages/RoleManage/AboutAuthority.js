@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select } from 'antd-x';
+import { Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select } from 'zeal-cube';
 
 const { Search, TextArea } = Input;
 const { Option } = Select;

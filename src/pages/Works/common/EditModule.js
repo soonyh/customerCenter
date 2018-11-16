@@ -11,7 +11,7 @@ import {
   message,
   Button,
   Transfer,
-} from 'antd-x';
+} from 'zeal-cube';
 import styles from './EditModule.less';
 
 const Search = Input.Search;

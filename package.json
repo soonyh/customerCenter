@@ -7,6 +7,7 @@
     "dev:no-mock": "cross-env MOCK=none umi dev",
     "build": "umi build",
     "analyze": "cross-env ANALYZE=1 umi build",
+    "clear": "rimraf node_modules",
     "prettier": "prettier --write ./src/**/**/**/*"
   },
   "keywords": [],
@@ -17,6 +18,7 @@
     "mockjs": "^1.0.1-beta3",
     "prettier": "^1.14.3",
     "raf": "^3.4.0",
+    "rimraf": "^2.6.2",
     "roadhog-api-doc": "^1.1.2",
     "umi": "^2.1.2",
     "umi-plugin-react": "^1.1.1"
@@ -24,7 +26,6 @@
   "dependencies": {
     "@antv/data-set": "^0.9.6",
     "@babel/runtime": "^7.1.2",
-    "antd-x": "^1.0.8",
     "bizcharts": "^3.2.4",
     "bizcharts-plugin-slider": "^2.1.1-beta.1",
     "classnames": "^2.2.6",
@@ -45,6 +46,7 @@
     "react-document-title": "^2.0.3",
     "react-fittext": "^1.0.0",
     "react-resizable": "^1.7.5",
-    "react-sticky": "^6.0.3"
+    "react-sticky": "^6.0.3",
+    "zeal-cube": "^1.0.9"
   }
 }

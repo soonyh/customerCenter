@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button, Row, Col, Form, DatePicker } from 'antd-x';
+import { Table, Button, Row, Col, Form, DatePicker } from 'zeal-cube';
 import moment from 'moment';
 import { connect } from 'dva';
 import isEqual from 'lodash/isEqual';

@@ -1,5 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
-import { Card, Steps } from 'antd-x';
+import { Card, Steps } from 'zeal-cube';
 import { connect } from 'dva';
 import LoadingComponent from '@/components/PageLoading/index';
 import styles from '../style.less';

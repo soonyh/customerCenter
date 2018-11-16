@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Card, Row, Col, Button, Tag, Steps, Tabs, Divider } from 'antd-x';
+import { Icon, Card, Row, Col, Button, Tag, Steps, Tabs, Divider } from 'zeal-cube';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 
 const buttonStyles = {

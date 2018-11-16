@@ -1,4 +1,4 @@
-import { Tree, Icon, Input, Popconfirm, message, Button } from 'antd-x';
+import { Tree, Icon, Input, Popconfirm, message, Button } from 'zeal-cube';
 import React, { Component } from 'react';
 import styles from './index.less';
 import RightContent from './RightContent';

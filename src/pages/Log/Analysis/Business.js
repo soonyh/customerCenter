@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Button, Icon } from 'antd-x';
+import { Row, Col, Button, Icon } from 'zeal-cube';
 import {
   G2,
   Chart,

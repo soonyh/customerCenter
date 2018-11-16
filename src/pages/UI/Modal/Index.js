@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Card, Row, Col, Button, Modal, message } from 'antd-x';
+import { Icon, Card, Row, Col, Button, Modal, message } from 'zeal-cube';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import longImage from './img/KwPYo.jpg';
 

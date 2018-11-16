@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Row, Col, Tag, Table, Icon, Switch, Radio, Form, Divider } from 'antd-x';
+import { Card, Row, Col, Tag, Table, Icon, Switch, Radio, Form, Divider } from 'zeal-cube';
 import { Resizable } from 'react-resizable';
 
 const ResizeableTitle = props => {

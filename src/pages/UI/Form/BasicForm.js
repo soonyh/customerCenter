@@ -12,7 +12,7 @@ import {
   Radio,
   Icon,
   Tooltip,
-} from 'antd-x';
+} from 'zeal-cube';
 import { fixPlaceholderForIE } from '@/utils/utils';
 import styles from './style.less';
 

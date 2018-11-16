@@ -1,4 +1,4 @@
-import { Table, Divider, Icon, Input,  Popconfirm, message,Button,Card } from 'antd-x';
+import { Table, Divider, Icon, Input,  Popconfirm, message,Button,Card } from 'zeal-cube';
 import React, { Component } from 'react';
 import styles from './CustViewTemplate.less';
 import { connect } from 'dva';

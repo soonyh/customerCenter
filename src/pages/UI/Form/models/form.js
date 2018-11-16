@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva/router';
-import { message } from 'antd-x';
+import { message } from 'zeal-cube';
 import { fakeSubmitForm } from '@/services/api';
 
 export default {

@@ -1,4 +1,4 @@
-import { Card,Steps, Popover,Icon,Table,Badge,Button} from 'antd-x';
+import { Card,Steps, Popover,Icon,Table,Badge,Button} from 'zeal-cube';
 import React, { Component } from 'react';
 import styles from './Index.less';
 

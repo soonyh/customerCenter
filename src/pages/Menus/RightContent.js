@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './RightContent.less';
-import { Row, Col, Form, Select, Input, Table, Popconfirm, Button } from 'antd-x';
+import { Row, Col, Form, Select, Input, Table, Popconfirm, Button } from 'zeal-cube';
 
 const FormItem = Form.Item;
 

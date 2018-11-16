@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button, Row, Col, List, Table, Radio } from 'antd-x';
+import { Card, Button, Row, Col, List, Table, Radio } from 'zeal-cube';
 import { connect } from 'dva';
 import Ellipsis from '@/components/Ellipsis';
 import styles from './custom.less';

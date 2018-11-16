@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Card, Row, Col, Button, Radio, Menu, Dropdown, Skeleton, Avatar } from 'antd-x';
+import { Icon, Card, Row, Col, Button, Radio, Menu, Dropdown, Skeleton, Avatar } from 'zeal-cube';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 
 const gridStyle = {

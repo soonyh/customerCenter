@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react';
 import { connect } from 'dva';
 import { StickyContainer, Sticky } from 'react-sticky';
-import { Layout, Menu, Icon, Tabs, Button } from 'antd-x';
+import { Layout, Menu, Icon, Tabs, Button } from 'zeal-cube';
 import DocumentTitle from 'react-document-title';
 import pathToRegexp from 'path-to-regexp';
 import Debounce from 'lodash-decorators/debounce';
@@ -18,7 +18,7 @@ import defaultSettings from '@/defaultSettings';
 import styles from './layout.less';
 import Exception403 from '../pages/Exception/403';
 import Exception404 from '../pages/Exception/404';
-import 'antd-x/dist/antd-x.css';
+import 'zeal-cube/dist/zeal-cube.css';
 
 // 引入子菜单组件
 const { Footer, Sider, Content } = Layout;

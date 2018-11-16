@@ -12,7 +12,7 @@ import {
   Transfer,
   Card,
   notification, 
-} from 'antd-x';
+} from 'zeal-cube';
 import React, { Component } from 'react';
 import styles from './Index.less';
 

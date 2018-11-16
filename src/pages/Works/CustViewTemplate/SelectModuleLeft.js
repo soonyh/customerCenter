@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Select, Button,Card } from 'antd-x';
+import { Row, Col, Select, Button,Card } from 'zeal-cube';
 import styles from './EditModule.less';
 import { connect } from 'dva';
 

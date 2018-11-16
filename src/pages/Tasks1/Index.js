@@ -1,4 +1,4 @@
-import { Card,Row,Col,Divider,Input, Tabs } from 'antd-x';
+import { Card,Row,Col,Divider,Input, Tabs } from 'zeal-cube';
 import React, { Component } from 'react';
 import styles from './Index.less';
 import Undo from './undo/Index';

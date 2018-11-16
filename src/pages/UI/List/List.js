@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import router from 'umi/router';
 import { connect } from 'dva';
-import { Input } from 'antd-x';
+import { Input } from 'zeal-cube';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 
 @connect()

@@ -11,7 +11,7 @@ import {
   Input,
   Select,
   Popover,
-} from 'antd-x';
+} from 'zeal-cube';
 import { connect } from 'dva';
 import FooterToolbar from '@/components/FooterToolbar';
 // import PageHeaderWrapper from '@/components/PageHeaderWrapper';

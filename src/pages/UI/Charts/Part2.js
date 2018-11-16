@@ -1,4 +1,4 @@
-import { Row, Col, Icon, Tooltip } from 'antd-x';
+import { Row, Col, Icon, Tooltip } from 'zeal-cube';
 import React, { Component } from 'react';
 import { ChartCard, yuan, Field } from '@/components/Charts';
 import Trend from '@/components/Trend';

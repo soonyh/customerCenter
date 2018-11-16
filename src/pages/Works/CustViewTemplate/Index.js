@@ -1,4 +1,4 @@
-import { Tree, Icon, Input,  Popconfirm, message,Card} from 'antd-x';
+import { Tree, Icon, Input,  Popconfirm, message,Card} from 'zeal-cube';
 import React, { Component } from 'react';
 import LoadingComponent from '@/components/PageLoading/index';
 import dynamic from 'umi/dynamic';

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { connect } from 'dva';
-import { Row, Col, Form, Card, Select, List } from 'antd-x';
+import { Row, Col, Form, Card, Select, List } from 'zeal-cube';
 
 import TagSelect from '@/components/TagSelect';
 import AvatarList from '@/components/AvatarList';

@@ -20,7 +20,7 @@ import {
   Divider,
   Steps,
   Radio,
-} from 'antd-x';
+} from 'zeal-cube';
 import StandardTable from '@/components/StandardTable';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 

@@ -1,4 +1,4 @@
-import { notification } from 'antd-x';
+import { notification } from 'zeal-cube';
 import hash from 'hash.js';
 import defaultSettings from '@/defaultSettings';
 

@@ -1,4 +1,4 @@
-import { message } from 'antd-x';
+import { message } from 'zeal-cube';
 import defaultSettings from '@/defaultSettings';
 
 let lessNodesAppended;

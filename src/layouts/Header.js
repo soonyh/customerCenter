@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Layout, Menu, Dropdown, Icon, Badge, Row, Col, Modal, Button } from 'antd-x';
+import { Layout, Menu, Dropdown, Icon, Badge, Row, Col, Modal, Button } from 'zeal-cube';
 import { formatMessage, setLocale, getLocale, FormattedMessage } from 'umi/locale';
 import classNames from 'classnames';
 import { connect } from 'dva';

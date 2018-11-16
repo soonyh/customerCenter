@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Card, DatePicker, Row, Col, Form, Select, Button, Icon, Divider } from 'antd-x';
+import { Card, DatePicker, Row, Col, Form, Select, Button, Icon, Divider } from 'zeal-cube';
 import { TimelineChart } from '@/components/Charts';
 import classNames from 'classnames';
 import { fixPlaceholderForIE } from '@/utils/utils';

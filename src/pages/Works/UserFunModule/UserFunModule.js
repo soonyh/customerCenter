@@ -1,4 +1,4 @@
-import { Table, Divider, Icon, Input, Popconfirm, message, Button } from 'antd-x';
+import { Table, Divider, Icon, Input, Popconfirm, message, Button } from 'zeal-cube';
 import React, { Component } from 'react';
 import styles from './UserFunModule.less';
 import { connect } from 'dva';

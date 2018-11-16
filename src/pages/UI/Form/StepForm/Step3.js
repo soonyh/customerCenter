@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'dva';
-import { Button, Row, Col } from 'antd-x';
+import { Button, Row, Col } from 'zeal-cube';
 import router from 'umi/router';
 import Result from '@/components/Result';
 import styles from './style.less';

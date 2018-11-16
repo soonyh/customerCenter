@@ -73,8 +73,8 @@ export default {
     path.join(__dirname, '../src/global.less'),
     path.join(__dirname, '../src/layouts/UserLayout.less'),
   ],
-  base:'/unicom-custmer-center/',
-  publicPath:'/unicom-custmer-center/',
+  base:'/',
+  publicPath:'/',
   history: 'hash',
   // 路由配置
   routes: pageRoutes,

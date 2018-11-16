@@ -1,4 +1,4 @@
-import { Table, Divider, Tag } from 'antd-x';
+import { Table, Divider, Tag } from 'zeal-cube';
 
 const columns = [
   {

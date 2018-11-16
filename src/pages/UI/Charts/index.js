@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Card } from 'antd-x';
+import { Row, Col, Card } from 'zeal-cube';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import Part1 from './Part1';
 import Part2 from './Part2';

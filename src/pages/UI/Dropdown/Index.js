@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Card, Menu, Dropdown, Icon, Button } from 'antd-x';
+import { Row, Col, Card, Menu, Dropdown, Icon, Button } from 'zeal-cube';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 
 const topProps = {

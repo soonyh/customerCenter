@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Tabs, Card, Input } from 'antd-x';
+import { Table, Tabs, Card, Input } from 'zeal-cube';
 import LoadingComponent from '@/components/PageLoading/index';
 import { fixPlaceholderForIE } from '@/utils/utils';
 import dynamic from 'umi/dynamic';

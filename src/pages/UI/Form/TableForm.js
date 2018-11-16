@@ -1,5 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
-import { Table, Button, Input, message, Popconfirm, Divider } from 'antd-x';
+import { Table, Button, Input, message, Popconfirm, Divider } from 'zeal-cube';
 import isEqual from 'lodash/isEqual';
 import styles from './style.less';
 

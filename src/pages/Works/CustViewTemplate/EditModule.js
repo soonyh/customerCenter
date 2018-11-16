@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SelectModuleLeft from './SelectModuleLeft';
 import SelectModuleRight from './SelectModuleRight';
-import {Table, Icon, Input, Row, Col, Form, Select,  Popconfirm, message,Button,Transfer,Card ,Radio } from 'antd-x';
+import {Table, Icon, Input, Row, Col, Form, Select,  Popconfirm, message,Button,Transfer,Card ,Radio } from 'zeal-cube';
 import styles from './EditModule.less';
 import { connect } from 'dva';
 import testImg1 from './img/ico-layout-48.png';
