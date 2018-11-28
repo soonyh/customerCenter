@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react';
 import { connect } from 'dva';
 import { StickyContainer, Sticky } from 'react-sticky';
-import { Layout, Menu, Icon, Tabs, Button } from 'zeal-cube';
+import { LocaleProvider, Layout, Menu, Icon, Tabs, Button } from 'zeal-cube';
 import DocumentTitle from 'react-document-title';
 import pathToRegexp from 'path-to-regexp';
 import Debounce from 'lodash-decorators/debounce';
@@ -18,6 +18,7 @@ import defaultSettings from '@/defaultSettings';
 import styles from './layout.less';
 import Exception403 from '../pages/Exception/403';
 import Exception404 from '../pages/Exception/404';
+import zh_CN from 'zeal-cube/lib/locale-provider/zh_CN';
 import 'zeal-cube/dist/zeal-cube.css';
 
 // 引入子菜单组件
@@ -374,7 +375,7 @@ class BasicLayout extends React.PureComponent {
   /**
    * siderbar 固定时需要给content区域设置一个paddingLeft
    */
-  getContentStyle() {    
+  getContentStyle() {
     const { collapsed } = this.props;
     const siderWidth = collapsed ? '80px' : defaultSettings.siderWidth + 'px';
 
@@ -382,9 +383,9 @@ class BasicLayout extends React.PureComponent {
       return {};
     }
     if (collapsed) {
-      return { paddingLeft: '80px'};
+      return { paddingLeft: '80px' };
     }
-    return { paddingLeft: defaultSettings.siderWidth};
+    return { paddingLeft: defaultSettings.siderWidth };
   }
 
   render() {
@@ -399,23 +400,27 @@ class BasicLayout extends React.PureComponent {
     const routerConfig = this.matchParamsPath(pathname);
 
     return (
-      <DocumentTitle title={`${this.getTabTitle(pathname)} - ${defaultSettings.name}`}>
-        <Layout>
-          <Header />
-          <Layout className={styles.main}>
-            <SiderMenu
-              collapsible={true}
-              collapsed
-              Authorized={Authorized}
-              theme={navTheme}
-              onCollapse={this.handleMenuCollapse}
-              menuData={menuData}
-              {...this.props}
-            />
-            <Layout style={{...this.getContentStyle(),width:'100%'}}>{this.renderBody(routerConfig)}</Layout>
+      <LocaleProvider locale={zh_CN}>
+        <DocumentTitle title={`${this.getTabTitle(pathname)} - ${defaultSettings.name}`}>
+          <Layout>
+            <Header />
+            <Layout className={styles.main}>
+              <SiderMenu
+                collapsible={true}
+                collapsed
+                Authorized={Authorized}
+                theme={navTheme}
+                onCollapse={this.handleMenuCollapse}
+                menuData={menuData}
+                {...this.props}
+              />
+              <Layout style={{ ...this.getContentStyle(), width: '100%' }}>
+                {this.renderBody(routerConfig)}
+              </Layout>
+            </Layout>
           </Layout>
-        </Layout>
-      </DocumentTitle>
+        </DocumentTitle>
+      </LocaleProvider>
     );
   }
 }

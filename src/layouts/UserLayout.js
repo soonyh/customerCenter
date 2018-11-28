@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Link from 'umi/link';
 import { Icon } from 'zeal-cube';
 import defaultSettings from '@/defaultSettings';
+import 'zeal-cube/dist/zeal-cube.css';
 import styles from './UserLayout.less';
 import logo from './img/logo.png';
 import zhengQi from './img/pic_zhengqi.png';

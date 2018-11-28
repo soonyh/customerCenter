@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Card, Button, Row, Col, List, Table, Radio } from 'zeal-cube';
+import { Card, Button, Row, Col, List, Table, Radio, Ellipsis} from 'zeal-cube';
 import { connect } from 'dva';
-import Ellipsis from '@/components/Ellipsis';
+// import Ellipsis from '@/components/Ellipsis';
 import styles from './custom.less';
 import { Bar } from '@/components/Charts';
 import {
@@ -153,6 +153,7 @@ class Dashboard extends Component {
               className="margin-bottom"
               extra={<a href="##">更多</a>}
             >
+            <Ellipsis tooltip lines={1}><p>There were injuries alleged in three <a href="#cover">cases in 2015</a>, and a fourth incident in September, according to the safety recall report. After meeting with US regulators in October, the firm decided to issue a voluntary recall.</p></Ellipsis>
               <List
                 bordered={false}
                 dataSource={data}

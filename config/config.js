@@ -12,7 +12,7 @@ export default {
       'umi-plugin-react',
       {
         // 这里暂时还没有添加配置，该插件还不会有作用，我们会在后面的课程按照需求打开相应的配置
-        antd: true, //引入 antd 并实现按需编译
+        // antd: true, //引入 antd 并实现按需编译
         dva: true,
         title: defaultSettings.name,
         dynamicImport: {
@@ -73,9 +73,10 @@ export default {
     path.join(__dirname, '../src/global.less'),
     path.join(__dirname, '../src/layouts/UserLayout.less'),
   ],
-  base:'/',
-  publicPath:'/',
+  base: process.env.gh ? '/unicom-custmer-center/' :'/',
+  publicPath: process.env.gh ? '/unicom-custmer-center/' :'/',
   history: 'hash',
+  hash:true,
   // 路由配置
   routes: pageRoutes,
 };

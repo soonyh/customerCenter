@@ -6,6 +6,7 @@
     "dev": "umi dev",
     "dev:no-mock": "cross-env MOCK=none umi dev",
     "build": "umi build",
+    "gh": "cross-env gh=true umi build",
     "analyze": "cross-env ANALYZE=1 umi build",
     "clear": "rimraf node_modules",
     "prettier": "prettier --write ./src/**/**/**/*"
@@ -47,6 +48,6 @@
     "react-fittext": "^1.0.0",
     "react-resizable": "^1.7.5",
     "react-sticky": "^6.0.3",
-    "zeal-cube": "^1.0.9"
+    "zeal-cube": "^1.1.0"
   }
 }

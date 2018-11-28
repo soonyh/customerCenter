@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { ChartCard, Field, MiniArea, MiniBar, MiniProgress } from '@/components/Charts';
-import Trend from '@/components/Trend';
-import NumberInfo from '@/components/NumberInfo';
-import { Row, Col, Icon, Tooltip } from 'zeal-cube';
+import { Row, Col, Icon, Tooltip, NumberInfo, Trend } from 'zeal-cube';
 import numeral from 'numeral';
 import moment from 'moment';
 
@@ -28,7 +26,7 @@ class Dashboard extends Component {
         <Col span={24}>
           <ChartCard title="搜索用户数量" total={numeral(8846).format('0,0')} contentHeight={134}>
             <NumberInfo
-              subTitle={<span>本周访问</span>}
+              subTitle={<span>本周访问1</span>}
               total={numeral(12321).format('0,0')}
               status="up"
               subTotal={17.1}
