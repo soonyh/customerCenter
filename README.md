@@ -262,7 +262,7 @@ model、dispatch、action、reducer和effects都是redux中的重要概念
 
 ```javascript
 module.exports = {
-  name: '政企客户中心',            //项目名称
+  name: 'xx中心',            //项目名称
   language: 'zh-CN',
   timeout: 1000 * 60,             //异步超时设定，1分钟
   footer: 'xxx有限公司版权所有', // footer中显示的字, 可以嵌入html标签
